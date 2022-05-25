@@ -1,0 +1,29 @@
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        int l = 0;
+        StringBuffer sb1 = new StringBuffer();
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == '(') l++;
+            if(s.charAt(i) == ')'){
+                if(l == 0) continue;              
+                l--;
+            } ;
+            sb1.append(s.charAt(i));
+        }
+        sb1 = sb1.reverse();
+        if(l > 0){
+            StringBuffer sb2 = new StringBuffer();
+            int r=0;
+            for(int j = 0; j<sb1.length(); j++){
+                if(sb1.charAt(j) == ')') r++;
+                if(sb1.charAt(j) == '('){
+                    if(r == 0) continue;
+                    r--;
+                }
+                sb2.append(sb1.charAt(j));
+            }
+            return sb2.reverse().toString();
+        }
+        return sb1.reverse().toString();
+    }
+}
